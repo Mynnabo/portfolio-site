@@ -1,16 +1,261 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
+import Gallery from "../components/Gallery.astro";
+import { galleryImages } from "../data/images";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Diego Bonnamy | Photography">
+  <header class="hero">
+    <div class="hero-image-container">
+      <img
+        src="/images/hero.JPG"
+        alt="Diego Bonnamy Wildlife"
+        class="hero-img"
+      />
+      <div class="fade-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <h1>Diego Bonnamy Wildlife</h1>
+      <p class="subtitle">Explore the World</p>
+    </div>
+  </header>
+
+  <main>
+    <Gallery images={galleryImages} />
+
+    <section class="app-cta">
+      <div class="phone-mockup">
+        <div class="phone-border">
+          <div class="phone-screen">
+            <img
+              src="/images/app-screen.png"
+              alt="Aperçu de l’application Fauna"
+              class="app-screen-img"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="cta-content">
+        <p class="kicker">Conçu par un photographe,</p>
+        <h2>Pour les photographes.</h2>
+        <p class="subtitle">Découvrez l’app Fauna (Bientôt disponible)</p>
+        <div class="glow-effect"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="footer-copyright">
+      Images © Diego Bonnamy. Tous droits réservés.
+    </p>
+
+    <div class="footer-links">
+      <span>&copy; 2025</span>
+      <span class="separator">·</span>
+      <a href="#" target="_blank">Instagram</a>
+      <span class="separator">·</span>
+      <a href="mailto:mynnabostudio@gmail.com">Contact</a>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  /* --- Hero Styles --- */
+  .hero {
+    position: relative;
+    height: 75vh; /* Prend presque tout l'écran */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom; /* Centre sur le sujet en bas */
+    filter: grayscale(100%) contrast(1.1);
+    display: block;
+  }
+
+  /* LE FADE OBLIGATOIRE : Gradient du transparent vers le background color */
+  .fade-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%; /* Commence à mi-hauteur */
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--bg-color) 100%
+    );
+    pointer-events: none;
+  }
+
+  .hero-content {
+    text-align: center;
+    z-index: 1;
+    margin-bottom: 10vh; /* Remonte le texte légèrement au dessus du fondu total */
+  }
+
+  h1 {
+    font-weight: 100;
+    font-size: clamp(2rem, 5vw, 4rem); /* Responsive font size */
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .subtitle {
+    font-weight: 300;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: #888;
+    margin-top: 1rem;
+    opacity: 0.8;
+  }
+
+  /* --- App CTA Styles --- */
+  .app-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3.5rem;
+    padding: 4rem 6vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phone-border {
+    width: 120px;
+    height: 240px;
+    border: 2px solid #333;
+    border-radius: 20px;
+    padding: 5px;
+    position: relative;
+  }
+
+  .phone-screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #000;
+    position: relative;
+  }
+
+  .app-screen-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .phone-screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.12),
+      transparent 40%
+    );
+    pointer-events: none;
+  }
+
+  .cta-content {
+    max-width: 500px;
+  }
+
+  .cta-content h2 {
+    font-weight: 300;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: #ccc;
+    z-index: 2;
+    position: relative;
+  }
+
+  .kicker {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #777;
+    margin-bottom: 1rem;
+  }
+
+  .cta-content .subtitle {
+    margin-top: 1rem;
+    color: #999;
+  }
+
+  .glow-effect {
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0.05) 30%,
+      transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @media (max-width: 768px) {
+    .app-cta {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  /* --- Footer Styles --- */
+  footer {
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #666;
+    border-top: 1px solid #111;
+  }
+
+  .footer-copyright {
+    opacity: 0.6;
+    margin-bottom: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #444;
+  }
+
+  .footer-links a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: #fff;
+  }
+
+  .separator {
+    margin: 0 0.5rem;
+  }
+</style>
