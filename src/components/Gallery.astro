@@ -1,0 +1,184 @@
+---
+import type { ImageItem } from '../data/images';
+
+interface Props {
+  images: ImageItem[];
+}
+
+const { images } = Astro.props;
+const INITIAL_DISPLAY_COUNT = 6; // 2 lignes de 3 images
+---
+
+<section class="gallery-container">
+  <div class="gallery-grid" id="gallery-grid">
+    {images.map((img, index) => (
+      <article 
+        class={`gallery-item ${index >= INITIAL_DISPLAY_COUNT ? 'hidden-item' : ''}`}
+        data-index={index}
+      >
+        <figure class="image-wrapper">
+          <img 
+            src={img.url} 
+            alt={img.alt}
+            width={img.width}
+            height={img.height}
+            loading="lazy" 
+            class="gallery-img"
+          />
+          <div class="overlay"></div>
+        </figure>
+      </article>
+    ))}
+  </div>
+
+  {images.length > INITIAL_DISPLAY_COUNT && (
+    <div class="gallery-actions">
+      <button id="load-more-btn" class="btn-outline">
+        Voir plus
+      </button>
+    </div>
+  )}
+</section>
+
+<script>
+  // Logique Client-Side (Vanilla JS léger)
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('gallery-grid');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const items = document.querySelectorAll('.gallery-item');
+
+    // --- 1. Intersection Observer pour l'effet d'apparition ---
+    const observerOptions = {
+      root: null, // viewport
+      rootMargin: '0px',
+      threshold: 0.1 // déclenche quand 10% de l'image est visible
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target); // Stop observing une fois chargé
+        }
+      });
+    }, observerOptions);
+
+    items.forEach(item => {
+        // On observe seulement les items non cachés par le bouton "voir plus"
+        if (!item.classList.contains('hidden-item')) {
+            revealObserver.observe(item);
+        }
+    });
+
+    // --- 2. Logique "Voir Plus" ---
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', () => {
+        const hiddenItems = document.querySelectorAll('.hidden-item');
+        
+        hiddenItems.forEach((item, index) => {
+            // Petit délai pour un effet cascade sympa
+            setTimeout(() => {
+                item.classList.remove('hidden-item');
+                revealObserver.observe(item); // On commence à l'observer
+            }, index * 100);
+        });
+
+        // Cacher le bouton après chargement
+        loadMoreBtn.style.display = 'none';
+      });
+    }
+  });
+</script>
+
+<style>
+  .gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  /* --- Grid System --- */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: 1 colonne */
+    gap: 1.5rem; /* Espace entre les images */
+  }
+
+  /* Tablette & Desktop: 3 colonnes */
+  @media (min-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px; /* Style "fine border" comme sur la maquette parfois */
+    }
+  }
+
+  /* --- Item Styles --- */
+  .gallery-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    background-color: #1a1a1a; /* Placeholder visuel */
+    aspect-ratio: 3/2; /* Ratio forcé pour éviter le layout shift */
+    overflow: hidden;
+  }
+
+  /* Classe ajoutée par JS quand l'élément entre dans le viewport */
+  .gallery-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Items cachés initialement */
+  .hidden-item {
+    display: none;
+  }
+
+  /* --- Image Styles --- */
+  .image-wrapper {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+
+  /* Hover effect: Zoom + Couleur */
+  .gallery-item:hover .gallery-img {
+    transform: scale(1.05);
+  }
+
+  /* --- Button Styles --- */
+  .gallery-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #333;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #444;
+    padding: 12px 30px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-outline:hover {
+    border-color: #fff;
+    background: rgba(255,255,255,0.1);
+  }
+</style>
