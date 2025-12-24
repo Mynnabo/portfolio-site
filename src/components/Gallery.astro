@@ -1,5 +1,5 @@
 ---
-import type { ImageItem } from '../data/images';
+import type { ImageItem } from "../data/images";
 
 interface Props {
   images: ImageItem[];
@@ -11,82 +11,127 @@ const INITIAL_DISPLAY_COUNT = 6; // 2 lignes de 3 images
 
 <section class="gallery-container">
   <div class="gallery-grid" id="gallery-grid">
-    {images.map((img, index) => (
-      <article 
-        class={`gallery-item ${index >= INITIAL_DISPLAY_COUNT ? 'hidden-item' : ''}`}
-        data-index={index}
-      >
-        <figure class="image-wrapper">
-          <img 
-            src={img.url} 
-            alt={img.alt}
-            width={img.width}
-            height={img.height}
-            loading="lazy" 
-            class="gallery-img"
-          />
-          <div class="overlay"></div>
-        </figure>
-      </article>
-    ))}
+    {
+      images.map((img, index) => (
+        <article
+          class={`gallery-item ${index >= INITIAL_DISPLAY_COUNT ? "hidden-item" : ""}`}
+          data-index={index}
+        >
+          <figure class="image-wrapper">
+            <img
+              src={img.url}
+              alt={img.alt}
+              width={img.width}
+              height={img.height}
+              loading="lazy"
+              class="gallery-img"
+            />
+            <div class="overlay" />
+          </figure>
+        </article>
+      ))
+    }
   </div>
 
-  {images.length > INITIAL_DISPLAY_COUNT && (
-    <div class="gallery-actions">
-      <button id="load-more-btn" class="btn-outline">
-        Voir plus
-      </button>
-    </div>
-  )}
+  {
+    images.length > INITIAL_DISPLAY_COUNT && (
+      <div class="gallery-actions">
+        <button id="load-more-btn" class="btn-outline">
+          Voir plus
+        </button>
+      </div>
+    )
+  }
+
+  <div id="lightbox" class="lightbox">
+    <img id="lightbox-img" alt="" />
+  </div>
 </section>
 
 <script>
   // Logique Client-Side (Vanilla JS léger)
-  document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('gallery-grid');
-    const loadMoreBtn = document.getElementById('load-more-btn');
-    const items = document.querySelectorAll('.gallery-item');
+  document.addEventListener("DOMContentLoaded", () => {
+    const grid = document.getElementById("gallery-grid");
+    const loadMoreBtn = document.getElementById("load-more-btn");
+    const items = document.querySelectorAll(".gallery-item");
 
     // --- 1. Intersection Observer pour l'effet d'apparition ---
     const observerOptions = {
       root: null, // viewport
-      rootMargin: '0px',
-      threshold: 0.1 // déclenche quand 10% de l'image est visible
+      rootMargin: "0px",
+      threshold: 0.1, // déclenche quand 10% de l'image est visible
     };
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
+          entry.target.classList.add("revealed");
           observer.unobserve(entry.target); // Stop observing une fois chargé
         }
       });
     }, observerOptions);
 
-    items.forEach(item => {
-        // On observe seulement les items non cachés par le bouton "voir plus"
-        if (!item.classList.contains('hidden-item')) {
-            revealObserver.observe(item);
-        }
+    items.forEach((item) => {
+      // On observe seulement les items non cachés par le bouton "voir plus"
+      if (!item.classList.contains("hidden-item")) {
+        revealObserver.observe(item);
+      }
     });
 
     // --- 2. Logique "Voir Plus" ---
     if (loadMoreBtn) {
-      loadMoreBtn.addEventListener('click', () => {
-        const hiddenItems = document.querySelectorAll('.hidden-item');
-        
+      loadMoreBtn.addEventListener("click", () => {
+        const hiddenItems = document.querySelectorAll(".hidden-item");
+
         hiddenItems.forEach((item, index) => {
-            // Petit délai pour un effet cascade sympa
-            setTimeout(() => {
-                item.classList.remove('hidden-item');
-                revealObserver.observe(item); // On commence à l'observer
-            }, index * 100);
+          // Petit délai pour un effet cascade sympa
+          setTimeout(() => {
+            item.classList.remove("hidden-item");
+            revealObserver.observe(item); // On commence à l'observer
+          }, index * 100);
         });
 
         // Cacher le bouton après chargement
-        loadMoreBtn.style.display = 'none';
+        loadMoreBtn.style.display = "none";
       });
     }
+  });
+
+  // --- Lightbox ---
+  document.addEventListener("DOMContentLoaded", () => {
+    const lightbox = document.getElementById(
+      "lightbox",
+    ) as HTMLDivElement | null;
+    const lightboxImg = document.getElementById(
+      "lightbox-img",
+    ) as HTMLImageElement | null;
+
+    if (!lightbox || !lightboxImg) {
+      console.warn("Lightbox elements not found");
+      return;
+    }
+
+    const galleryImages =
+      document.querySelectorAll<HTMLImageElement>(".gallery-img");
+
+    galleryImages.forEach((img) => {
+      img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add("active");
+      });
+    });
+
+    lightbox.addEventListener("click", () => {
+      lightbox.classList.remove("active");
+      lightboxImg.src = "";
+    });
+
+    document.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        lightbox.classList.remove("active");
+        lightboxImg.src = "";
+      }
+    });
   });
 </script>
 
@@ -116,7 +161,9 @@ const INITIAL_DISPLAY_COUNT = 6; // 2 lignes de 3 images
   .gallery-item {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition:
+      opacity 0.8s ease-out,
+      transform 0.8s ease-out;
     background-color: #1a1a1a; /* Placeholder visuel */
     aspect-ratio: 3/2; /* Ratio forcé pour éviter le layout shift */
     overflow: hidden;
@@ -179,6 +226,32 @@ const INITIAL_DISPLAY_COUNT = 6; // 2 lignes de 3 images
 
   .btn-outline:hover {
     border-color: #fff;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* --- Lightbox --- */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+  }
+
+  .lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
   }
 </style>
