@@ -44,7 +44,13 @@ const INITIAL_DISPLAY_COUNT = 6; // 2 lignes de 3 images
   }
 
   <div id="lightbox" class="lightbox">
-    <img id="lightbox-img" alt="" />
+    <figure class="lightbox-figure">
+      <img id="lightbox-img" alt="" />
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+
+    <button class="nav prev" aria-label="Image précédente">‹</button>
+    <button class="nav next" aria-label="Image suivante">›</button>
   </div>
 </section>
 
@@ -105,32 +111,66 @@ const INITIAL_DISPLAY_COUNT = 6; // 2 lignes de 3 images
     const lightboxImg = document.getElementById(
       "lightbox-img",
     ) as HTMLImageElement | null;
+    const caption = document.getElementById(
+      "lightbox-caption",
+    ) as HTMLParagraphElement | null;
+    const prevBtn = document.querySelector(
+      ".nav.prev",
+    ) as HTMLButtonElement | null;
+    const nextBtn = document.querySelector(
+      ".nav.next",
+    ) as HTMLButtonElement | null;
 
-    if (!lightbox || !lightboxImg) {
-      console.warn("Lightbox elements not found");
-      return;
-    }
+    if (!lightbox || !lightboxImg || !caption || !prevBtn || !nextBtn) return;
 
-    const galleryImages =
-      document.querySelectorAll<HTMLImageElement>(".gallery-img");
+    const images = Array.from(
+      document.querySelectorAll<HTMLImageElement>(".gallery-img"),
+    );
 
-    galleryImages.forEach((img) => {
-      img.addEventListener("click", () => {
-        lightboxImg.src = img.src;
-        lightbox.classList.add("active");
-      });
-    });
+    let currentIndex = 0;
 
-    lightbox.addEventListener("click", () => {
+    const openLightbox = (index: number) => {
+      const img = images[index];
+      currentIndex = index;
+
+      lightboxImg.src = img.src;
+      caption.textContent = img.alt || "";
+
+      lightbox.classList.add("active");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeLightbox = () => {
       lightbox.classList.remove("active");
       lightboxImg.src = "";
+      document.body.style.overflow = "";
+    };
+
+    const showPrev = () => {
+      openLightbox((currentIndex - 1 + images.length) % images.length);
+    };
+
+    const showNext = () => {
+      openLightbox((currentIndex + 1) % images.length);
+    };
+
+    images.forEach((img, index) => {
+      img.addEventListener("click", () => openLightbox(index));
     });
 
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    prevBtn.addEventListener("click", showPrev);
+    nextBtn.addEventListener("click", showNext);
+
     document.addEventListener("keydown", (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        lightbox.classList.remove("active");
-        lightboxImg.src = "";
-      }
+      if (!lightbox.classList.contains("active")) return;
+
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showPrev();
+      if (e.key === "ArrowRight") showNext();
     });
   });
 </script>
@@ -229,17 +269,17 @@ const INITIAL_DISPLAY_COUNT = 6; // 2 lignes de 3 images
     background: rgba(255, 255, 255, 0.1);
   }
 
-  /* --- Lightbox --- */
+  /* --- Lightbox ciné --- */
   .lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.92);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
     z-index: 9999;
   }
 
@@ -248,10 +288,60 @@ const INITIAL_DISPLAY_COUNT = 6; // 2 lignes de 3 images
     pointer-events: auto;
   }
 
-  #lightbox-img {
+  .lightbox-figure {
     max-width: 90vw;
     max-height: 90vh;
+    text-align: center;
+    transform: scale(0.96);
+    opacity: 0;
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+  }
+
+  .lightbox.active .lightbox-figure {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  #lightbox-img {
+    max-width: 100%;
+    max-height: 80vh;
     object-fit: contain;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.8);
+  }
+
+  #lightbox-caption {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #aaa;
+  }
+
+  /* Navigation */
+  .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 3rem;
+    cursor: pointer;
+    padding: 1rem;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+
+  .nav:hover {
+    opacity: 1;
+  }
+
+  .nav.prev {
+    left: 2vw;
+  }
+  .nav.next {
+    right: 2vw;
   }
 </style>
