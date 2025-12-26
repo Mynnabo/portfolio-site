@@ -141,12 +141,11 @@ import { galleryImages } from "../data/images";
   @media (max-width: 768px) {
     .hero {
       height: auto;
-      min-height: unset;
+      display: block; /* 👈 on sort du flex en mobile */
     }
 
     .hero-image-container {
       position: relative;
-      height: auto;
     }
 
     .hero-img {
@@ -168,17 +167,24 @@ import { galleryImages } from "../data/images";
 
     .hero-content {
       position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 10%;
+      left: 4vw;
+      z-index: 2;
       margin: 0;
-      text-align: center;
-      padding: 0 1.5rem;
+      max-width: 90%;
+      text-align: left;
     }
 
-    .hero-content::before {
-      margin-left: auto;
-      margin-right: auto;
+    .hero-content h1 {
+      font-size: 1.6rem;
+      letter-spacing: 0.25em;
+      line-height: 1.3;
+    }
+
+    .hero-content .subtitle {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      margin-top: 0.8rem;
     }
   }
 
