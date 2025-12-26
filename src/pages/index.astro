@@ -8,7 +8,7 @@ import { galleryImages } from "../data/images";
   <header class="hero">
     <div class="hero-image-container">
       <img
-        src="/images/hero.JPG"
+        src="/images/banner_header.jpg"
         alt="Diego Bonnamy Wildlife"
         class="hero-img"
       />
@@ -65,11 +65,11 @@ import { galleryImages } from "../data/images";
   /* --- Hero Styles --- */
   .hero {
     position: relative;
-    height: 75vh; /* Prend presque tout l'écran */
+    height: 75vh;
     width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: flex-start;
     overflow: hidden;
   }
 
@@ -86,8 +86,7 @@ import { galleryImages } from "../data/images";
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center bottom; /* Centre sur le sujet en bas */
-    filter: grayscale(100%) contrast(1.1);
+    object-position: center bottom;
     display: block;
   }
 
@@ -107,27 +106,53 @@ import { galleryImages } from "../data/images";
   }
 
   .hero-content {
-    text-align: center;
     z-index: 1;
-    margin-bottom: 10vh; /* Remonte le texte légèrement au dessus du fondu total */
+    margin-left: 6vw;
+    max-width: 600px;
+    text-align: left;
   }
 
-  h1 {
-    font-weight: 100;
-    font-size: clamp(2rem, 5vw, 4rem); /* Responsive font size */
-    letter-spacing: 0.3em;
+  .hero-content::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-content h1 {
+    font-weight: 200;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    letter-spacing: 0.35em;
     text-transform: uppercase;
     margin: 0;
-    opacity: 0.9;
+    color: rgba(255, 255, 255, 0.9);
   }
 
-  .subtitle {
-    font-weight: 300;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    color: #888;
-    margin-top: 1rem;
-    opacity: 0.8;
+  .hero-content .subtitle {
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      justify-content: center;
+    }
+
+    .hero-content {
+      margin-left: 0;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+
+    .hero-content::before {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   /* --- App CTA Styles --- */
