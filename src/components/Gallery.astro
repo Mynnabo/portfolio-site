@@ -178,8 +178,16 @@ const INITIAL_DISPLAY_COUNT = 6; // 2 lignes de 3 images
 <style>
   .gallery-container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: -6vh auto 0;
     padding: 2rem 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (max-width: 768px) {
+    .gallery-container {
+      margin-top: -3vh;
+    }
   }
 
   /* --- Grid System --- */
