@@ -9,6 +9,54 @@ export interface ImageItem {
 
 export const galleryImages: ImageItem[] = [
   {
+    id: '17',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5375.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Vautour Fauve — 480mm · 1/1000 · f/7.1 · ISO 2200',
+    category: 'Birds'
+  },
+  {
+    id: '16',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5174.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Crave à Bec Rouge — 210mm · 1/4000 · f/7.1 · ISO 800',
+    category: 'Birds'
+  },
+  {
+    id: '15',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5122.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Milan Royal — 500mm · 1/2500 · f/6.3 · ISO 560',
+    category: 'Birds'
+  },
+  {
+    id: '14',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5108.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Vautour Fauve — 500mm · 1/4000 · f/6.3 · ISO 720',
+    category: 'Birds'
+  },
+  {
+    id: '13',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5081.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Vautour Fauve — 500mm · 1/3200 · f/6.3 · ISO 1600',
+    category: 'Birds'
+  },
+  {
+    id: '12',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5034.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Bouquetin — 500mm · 1/1600 · f/7.1 · ISO 1600',
+    category: 'Mammals'
+  },
+  {
     id: '11',
     url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/cormoran.webp',
     width: 1000,
