@@ -9,6 +9,46 @@ export interface ImageItem {
 
 export const galleryImages: ImageItem[] = [
   {
+    id: '21',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5470.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Mouette Rieuse — 500mm · 1/3200 · f/7.1 · ISO 1000',
+    category: 'Birds'
+  },
+  {
+    id: '20',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5459.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Tarier Pâtre — 500mm · 1/3200 · f/7.1 · ISO 1400',
+    category: 'Birds'
+  },
+  {
+    id: '20',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5447.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Rouge-Gorge — 500mm · 1/3200 · f/7.1 · ISO 2800',
+    category: 'Birds'
+  },
+  {
+    id: '19',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5444.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Chevalier Guignette — 500mm · 1/3200 · f/7.1 · ISO 500',
+    category: 'Birds'
+  },
+  {
+    id: '18',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5429.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Mésange Bleue — 500mm · 1/3200 · f/7.1 · ISO 5000',
+    category: 'Birds'
+  },
+  {
     id: '17',
     url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5375.webp',
     width: 1000,
