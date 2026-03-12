@@ -9,6 +9,38 @@ export interface ImageItem {
 
 export const galleryImages: ImageItem[] = [
   {
+    id: '25',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5765.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Grèbe — 500mm · 1/1600 · f/6.3 · ISO 900',
+    category: 'Birds'
+  },
+  {
+    id: '24',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5728.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Faucon Crécerelle — 500mm · 1/1000 · f/5.6 · ISO 720',
+    category: 'Birds'
+  },
+  {
+    id: '23',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5638.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Pipit Farlouse — 500mm · 1/1600 · f/6.3 · ISO 800',
+    category: 'Birds'
+  },
+  {
+    id: '22',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5624.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Faisan de Colchide — 500mm · 1/1600 · f/6.3 · ISO 2500',
+    category: 'Birds'
+  },
+  {
     id: '21',
     url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5470.webp',
     width: 1000,
