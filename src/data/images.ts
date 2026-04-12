@@ -9,6 +9,22 @@ export interface ImageItem {
 
 export const galleryImages: ImageItem[] = [
   {
+    id: '27',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5906.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Grenouille — 500mm · 1/800 · f/5.6 · ISO 450',
+    category: 'Amphibian'
+  },
+  {
+    id: '26',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5889.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Chevreuil — 500mm · 1/1000 · f/5.6 · ISO 1000',
+    category: 'Mammals'
+  },
+  {
     id: '25',
     url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5765.webp',
     width: 1000,
