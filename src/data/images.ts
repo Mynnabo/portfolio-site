@@ -9,6 +9,62 @@ export interface ImageItem {
 
 export const galleryImages: ImageItem[] = [
   {
+    id: '34',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6176.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Gypaète Barbu — 500mm · 1/2000 · f/5.6 · ISO 360',
+    category: 'Birds'
+  },
+  {
+    id: '33',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6142.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Marmotte — 500mm · 1/1600 · f/5.6 · ISO 800',
+    category: 'Mammals'
+  },
+  {
+    id: '32',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6140.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Marmotte — 500mm · 1/1600 · f/5.6 · ISO 450',
+    category: 'Mammals'
+  },
+  {
+    id: '31',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6122.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Rougequeue noir — 500mm · 1/2000 · f/5.6 · ISO 560',
+    category: 'Birds'
+  },
+  {
+    id: '30',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6075.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Rougequeue noir — 500mm · 1/1250 · f/5.6 · ISO 900',
+    category: 'Birds'
+  },
+  {
+    id: '29',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6037.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Traquet motteux — 500mm · 1/2000 · f/5.6 · ISO 250',
+    category: 'Birds'
+  },
+  {
+    id: '28',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5973.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Isard — 500mm · 1/1250 · f/5.6 · ISO 280',
+    category: 'Mammals'
+  },
+  {
     id: '27',
     url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_5906.webp',
     width: 1000,
