@@ -9,6 +9,46 @@ export interface ImageItem {
 
 export const galleryImages: ImageItem[] = [
   {
+    id: '39',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6446.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Cerf Élaphe — 500mm · 1/3200 · f/5.6 · ISO 800',
+    category: 'Mammals'
+  },
+  {
+    id: '38',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6388.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Buse Variable — 500mm · 1/2500 · f/9 · ISO 800',
+    category: 'Birds'
+  },
+  {
+    id: '37',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6373.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Pic Épeiche — 500mm · 1/2000 · f/5.6 · ISO 1000',
+    category: 'Birds'
+  },
+  {
+    id: '36',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6335.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Vautour Fauve — 500mm · 1/4000 · f/10 · ISO 800',
+    category: 'Birds'
+  },
+  {
+    id: '35',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6255.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Faucon Crécerelle — 500mm · 1/2000 · f/5.6 · ISO 800',
+    category: 'Birds'
+  },
+  {
     id: '34',
     url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6176.webp',
     width: 1000,
