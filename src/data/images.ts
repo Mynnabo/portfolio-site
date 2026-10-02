@@ -9,6 +9,14 @@ export interface ImageItem {
 
 export const galleryImages: ImageItem[] = [
   {
+    id: '40',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6488.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Balbuzard Pêcheur — 500mm · 1/3200 · f/10 · ISO 800',
+    category: 'Birds'
+  },
+  {
     id: '39',
     url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6446.webp',
     width: 1000,
