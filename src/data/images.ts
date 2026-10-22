@@ -9,6 +9,38 @@ export interface ImageItem {
 
 export const galleryImages: ImageItem[] = [
   {
+    id: '44',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6559.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Cormoran Commun — 500mm · 1/3200 · f/5.6 · ISO 4500',
+    category: 'Birds'
+  },
+  {
+    id: '43',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6550.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Cormoran Commun — 500mm · 1/3200 · f/5.6 · ISO 2200',
+    category: 'Birds'
+  },
+  {
+    id: '42',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6548.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Tarier Pâtre — 500mm · 1/3200 · f/5.6 · ISO 1800',
+    category: 'Birds'
+  },
+  {
+    id: '41',
+    url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6524.webp',
+    width: 1000,
+    height: 600,
+    alt: 'Rouge-Gorge — 500mm · 1/3200 · f/5.6 · ISO 6400',
+    category: 'Birds'
+  },
+  {
     id: '40',
     url: 'https://pub-d10472e1ed20439a8d45da80f3e9a86b.r2.dev/DSC_6488.webp',
     width: 1000,
